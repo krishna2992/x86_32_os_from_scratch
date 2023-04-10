@@ -18,6 +18,7 @@ This Project Contains Following Folders:
 12. task: Defines process datastructure and its implementation.Can be further implemented to to use multithreading.
 
 #BEFORE RUNNING THIS SET gcc target to i686 as follow
+#OS uses qemu for running so install qemu
 
 #run 
 export TARGET=i686-elf
@@ -26,15 +27,24 @@ export TARGET=i686-elf
 make all
 
 #you can use gdb to debug your os
-#run 
+#start gdb 
 
 gdb
+
+#launch and attach qemu from gdb
+
 target remote | qemu-system-i386 -hda bin/os.bin -S -gdb stdio
+
+#load symbol file for Debugging in gdb
+
 add-symbol-file build/kernelfull.o 0x100000
 
 #to set break point use
 
 break function_name
 
-eg. 
+#eg. 
+
 break kernel_main
+
+#press c to start execution
